@@ -13,8 +13,8 @@ public:
     void jump();
     void gravity();
     void getPosition();
-    int getX() const;
-    int getY() const;
+    float getX() const;
+    float getY() const;
 
 private:
     int m_counterAnim;

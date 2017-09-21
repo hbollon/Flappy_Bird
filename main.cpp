@@ -1,18 +1,17 @@
 #include <iostream>
+#include <random>
 #include <time.h>
 #include "player.h"
 #include "game.h"
 #include "ground.h"
 #include "pipedown.h"
 #include "pipeup.h"
-#include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
 
-int i=0;
-
 int main()
 {
+    //Initialisation boucle de jeu
     sf::RenderWindow game(sf::VideoMode(1920, 1080), "Flappy Bird", sf::Style::Fullscreen);
 
     game.setFramerateLimit(60);
@@ -24,12 +23,23 @@ int main()
     ground ground1(-500);
     ground ground2(1420);
 
-    loadTextures();
-
-    sf::Vector2f center(bird.getX() + 700, bird.getY() + 530);
+    sf::Vector2f center(bird.getX() + 700, bird.getY() + 45);
     sf::Vector2f size (1920,1080);
     sf::View vue (center, size);
 
+    int i=0;
+    int counter = 0;
+    //int counterT = 0;
+    //int MAX = 0;
+    //int MIN = 0;
+    //int random = 0;
+    float back_X = -300.f;
+    float back_Y = -30.f;
+    int testGround = 0;
+
+    loadTextures(back_X, back_Y);
+
+    //Boucle de jeu
     while (game.isOpen())
     {
         if (i>6)
@@ -47,13 +57,19 @@ int main()
                 game.close();
 
             if (event.type == sf::Event::KeyPressed)
-                if(event.key.code == sf::Keyboard::Escape)
-                    game.close();
-            if (event.type == sf::Event::KeyPressed)
             {
-                if (event.key.code == sf::Keyboard::Space)
+                switch(event.key.code)
                 {
-                    bird.jump();
+                    case sf::Keyboard::Escape :
+                        game.close();
+                    break;
+
+                    case sf::Keyboard::Space :
+                        bird.jump();
+                    break;
+
+                    default :
+                    break;
                 }
             }
         }
@@ -79,16 +95,16 @@ int main()
             }
          }
 
-        if (counterT >= 100)
+        /*if (counterT >= 100)
         {
             counterT = 0;
             random = 0;
             srand(time(NULL));
             random = (rand() % (MAX - MIN + 1)) + MIN;
-        }
+        }*/
 
         counter++;
-        counterT++;
+        //counterT++;
 
         game.clear();
 
@@ -101,7 +117,6 @@ int main()
 
         vue.setCenter(center);
         game.setView(vue);
-        bird.getPosition();
 
         center.x = bird.getX() + 700;
 
@@ -111,7 +126,7 @@ int main()
     return 0;
 }
 
-void loadTextures()
+void loadTextures(float X, float Y)
 {
     if (!t_background.loadFromFile("background.png"))
     {
@@ -123,5 +138,5 @@ void loadTextures()
     }
 
     s_background.setTexture(t_background);
-    s_background.setPosition(back_X, back_Y);
+    s_background.setPosition(X, Y);
 }

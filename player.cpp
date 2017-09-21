@@ -52,20 +52,14 @@ sf::Sprite player::getSprite()
     return s_bird;
 }
 
-void player::getPosition()
+float player::getX() const
 {
-    m_X = s_bird.getPosition().x;
-    m_Y = s_bird.getPosition().y;
+    return s_bird.getPosition().x;
 }
 
-int player::getX() const
+float player::getY() const
 {
-    return m_X;
-}
-
-int player::getY() const
-{
-    return m_Y;
+    return s_bird.getPosition().y;
 }
 
 void player::animation()
