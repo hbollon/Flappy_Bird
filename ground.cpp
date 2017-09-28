@@ -18,7 +18,7 @@ ground::ground(float X)
 
 }
 
-sf::Sprite ground::getSpriteGround()
+sf::Sprite ground::getSpriteGround() const
 {
     return s_ground;
 }

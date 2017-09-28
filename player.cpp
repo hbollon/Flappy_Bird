@@ -47,7 +47,7 @@ player::player()
     s_bird.setPosition(0, 490);
 }
 
-sf::Sprite player::getSprite()
+sf::Sprite player::getSprite() const
 {
     return s_bird;
 }
@@ -60,6 +60,12 @@ float player::getX() const
 float player::getY() const
 {
     return s_bird.getPosition().y;
+}
+
+sf::IntRect player::getBoundingBox() const
+{
+    sf::IntRect boundingBox(s_bird.getGlobalBounds());
+    return boundingBox;
 }
 
 void player::animation()

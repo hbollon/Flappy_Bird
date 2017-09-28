@@ -10,7 +10,7 @@ public:
     ground(float X);
     void loadTexture();
     void moveGround();
-    sf::Sprite getSpriteGround();
+    sf::Sprite getSpriteGround() const;
 
 private:
     sf::Sprite s_ground;

@@ -7,9 +7,11 @@
 class PipeUp
 {
 public:
-    PipeUp();
-    sf::Sprite getSpritePipeUp();
-    void generatePipes();
+    PipeUp(int X, int Y);
+    sf::Sprite getSpritePipeUp() const;
+    sf::IntRect getBoundingBox() const;
+    void generatePipes(int Y);
+    float getX() const;
 
 private:
     sf::Sprite s_pipeUp;

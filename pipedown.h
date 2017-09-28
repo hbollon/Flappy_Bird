@@ -7,9 +7,11 @@
 class PipeDown
 {
 public:
-    PipeDown();
-    sf::Sprite getSpritePipeDown();
-    void generatePipes();
+    PipeDown(int X, int Y);
+    sf::Sprite getSpritePipeDown() const;
+    sf::IntRect getBoundingBox() const;
+    void generatePipes(int Y);
+    float getX() const;
 
 private:
     sf::Sprite s_pipeDown;

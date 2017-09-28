@@ -8,11 +8,11 @@ class player
 {
 public:
     player();
-    sf::Sprite getSprite();
+    sf::Sprite getSprite() const;
+    sf::IntRect getBoundingBox() const;
     void animation();
     void jump();
     void gravity();
-    void getPosition();
     float getX() const;
     float getY() const;
 

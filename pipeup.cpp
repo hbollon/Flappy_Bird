@@ -1,6 +1,6 @@
 #include "pipeup.h"
 
-PipeUp::PipeUp()
+PipeUp::PipeUp(int X, int Y)
 {
     if (!t_pipeUp.loadFromFile("pipe_up.png"))
     {
@@ -11,11 +11,26 @@ PipeUp::PipeUp()
         std::cout << "Loading pipe_up.png successful" << std::endl;
     }
 
+    pipeUX = X;
+    pipeUY = Y;
     s_pipeUp.setTexture(t_pipeUp);
-    s_pipeUp.setPosition(1920, 600);
+    s_pipeUp.setPosition(X, Y);
 }
 
-sf::Sprite PipeUp::getSpritePipeUp()
+sf::Sprite PipeUp::getSpritePipeUp() const
 {
     return s_pipeUp;
+}
+
+sf::IntRect PipeUp::getBoundingBox() const
+{
+    sf::IntRect boundingBox(s_pipeUp.getGlobalBounds());
+    return boundingBox;
+}
+
+void PipeUp::generatePipes(int Y)
+{
+    pipeUY = Y;
+    pipeUX += 2400;
+    s_pipeUp.setPosition(pipeUX, pipeUY);
 }
